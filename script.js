@@ -2,6 +2,12 @@ let squares = 10
 let anechkaIndex = Math.floor(Math.random()*squares)
 const main = document.getElementById('main')
 
+const startButton = document.getElementById('startButton')
+startButton.onclick = startGame
+
+document.body.style.background = 'linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%)'
+
+
 const audio = document.createElement('audio')
 audio.src = 'vakavak.mp3'
 main.appendChild(audio)
@@ -45,7 +51,6 @@ function createSquare (index) {
         createAnechka(x, y, squareSize)
     }
 
-
     square.onmouseover = function () {
         square.style.transition = '500ms';
         x = Math.random() * (main.clientWidth - 100);
@@ -56,41 +61,30 @@ function createSquare (index) {
             gameOver()   
         }
     }
-
     return square
 }
 
 function gameOver () {
-    // const audio = new Audio('./vaka-vak.mp3');
-    // audio.muted = false;
-    // audio.play()
-
     audio.play()
 
     setTimeout(function() {
-        alert('Anechka is found')
-        squares++
-        let arraySquares = document.querySelectorAll('div.square');
-        for (let square of arraySquares) {
-            main.removeChild(square);
-        }        
-        audio.pause()
-        audio.currentTime = 0;
-        
-        let anechka = document.querySelector('img');
-        main.removeChild(anechka);
-        
-        anechkaIndex = Math.floor(Math.random()*squares)
+        alert('Congratulations! Anechka is found!');
+        squares++;
+            
+        startGame();
+        }, 200);  
+    }
 
-        for (let i = 0; i < squares; i++) {
-            main.appendChild(createSquare(i));
-        }
-    }, 1000)  
+function startGame () {
+    document.body.querySelectorAll('.square, img, .gameInfo').forEach(function (div) {
+        div.remove();
+    });
 
-}
+    anechkaIndex = Math.floor(Math.random()*squares);
 
-for (let i = 0; i < squares; i++) {
-    main.appendChild(createSquare(i));
+    for (let i = 0; i < squares; i++) {
+        main.appendChild(createSquare(i));
+    }
 }
 
 function generateRandomColor () {
@@ -101,4 +95,3 @@ function generateRandomColor () {
     }
     return color;
 }
-
