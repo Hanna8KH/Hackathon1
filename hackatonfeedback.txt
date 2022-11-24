@@ -1,0 +1,6 @@
+Hello Anna. It was such a pleasure to correct your Hackaton project. I loved it. You implement almost everything
+we learn in class and very well. Loved the game and how it is incrementing the amount of squares after every win. 
+Very well done DOM manipulation, event listeners, animations, and use of timeout and interval. Your code is DRY
+and organized. And the final product it is a lovely game.
+
+Congratulations On your Hackaton Keep the good work.
